@@ -86,47 +86,103 @@ endif;?>
 
 <body <?php body_class($class);?>>
 
-  <header class="tbeer-header">
+  <div id="wrapper">
 
-    <nav class="navbar tbeer-main-menu" role="navigation">
+  <header class="site-header">
+      
+    <!-- .site-header-top -->
+    <div class="site-header-top">
 
       <div class="container-fluid">
 
         <div class="row">
+                
+                 <!-- Logo -->
+                 <div class="col-xs-12 col-md-3 col-lg-3">
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo-wrap pull-left">
+                      <?php if($pixel_options['logo']['url']!=""):?>
 
-                <!-- Navbar Toggle -->
-
-                <div class="navbar-header">
-
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-
-                        <span class="icon-bar"></span>
-
-                        <span class="icon-bar"></span>
-
-                        <span class="icon-bar"></span>
-
-                    </button>
-
-                    <!-- Logo -->
-
-                      <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-
-                        <?php if($pixel_options['logo']['url']!=""):?>
-
-                            <img class="logo" src="<?php echo esc_url($pixel_options['logo']['url']);?>" data-at2x="<?php echo esc_url($pixel_options['retina']['url']); ?>" alt="<?php bloginfo( 'name' ); ?>">
+                            <img src="<?php echo esc_url($pixel_options['logo']['url']);?>" data-at2x="<?php echo esc_url($pixel_options['retina']['url']); ?>" alt="<?php bloginfo( 'name' ); ?>" alt="logo" >
 
                         <?php else:?>
 
                             <?php bloginfo( 'name' ); ?>
 
                         <?php endif;?>
+                    </a>
+                 </div>
 
-                      </a>
+            <div class="col-xs-12 col-md-3 col-lg-3 header-custom">
 
+              <!-- .header-search-form -->
+              <div class="header-search-form text-left pull-right">
+                <div class="header-search-form-toogle">
+                  <button><img src="img/i-search.svg" class="svg" alt=""></button>
                 </div>
 
-                <!-- Navbar Toggle End -->
+                <form action="/" class="header-search-wrap col-xs-12 col-md-9 col-md-offset-3">
+                  <input type="search" placeholder="Search The Site...">
+                  <button><img src="img/i-search.svg" class="svg" alt=""></button>
+                  <div class="header-search-close">
+                    <img src="img/close.svg" class="svg" alt="">
+                  </div>
+                </form>
+
+                
+              </div>
+              <!-- /.header-search-form -->
+
+              <!-- .header-folow-us -->
+              <div class="header-social text-left pull-right">
+                <div class="header-social-name">
+                  Follow Us
+                  <ul class="sub-menu">
+                   <?php
+
+                  $facebook=$pixel_options['social_facebook'];
+
+                  $twitter=$pixel_options['social_twitter'];
+
+                  $google=$pixel_options['social_googlep'];
+
+                  $youtube=$pixel_options['social_youtube'];
+
+                  if($facebook!=""&& $twitter!="" && $google!="" && $youtube!=""):?>
+
+                        <ul>
+
+                          <?php if($facebook):?>
+
+                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
+
+                          <?php endif; if($twitter):?>
+
+                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
+
+                          <?php endif; if($google):?>
+
+                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
+
+                          <?php endif; if($youtube):?>
+
+                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
+
+                          <?php endif;?>
+
+                        </ul>
+
+                    </div>
+
+                  <?php endif;?>                
+                  
+                  </ul>
+
+              </div>
+              <!-- /.header-folow-us -->
+
+            </div>
+
+
 
               <!-- navbar-collapse start-->
 
@@ -157,76 +213,17 @@ endif;?>
               <!-- navbar-collapse end-->
               <div class="tbeer-social-and-search-wrapper">
 
-                <?php
-
-                  $facebook=$pixel_options['social_facebook'];
-
-                  $twitter=$pixel_options['social_twitter'];
-
-                  $google=$pixel_options['social_googlep'];
-
-                  $youtube=$pixel_options['social_youtube'];
-
-                  if($facebook!=""&& $twitter!="" && $google!="" && $youtube!=""):?>
-
-                    <div class="tbeer-social-links">
-
-                        <ul>
-
-                          <?php if($facebook):?>
-
-                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank" class="tbeer-facebook"><i class="fa fa-facebook"></i></a></li>
-
-                          <?php endif; if($twitter):?>
-
-                              <li><a href="<?php echo esc_url($twitter);?>" target="_blank" class="tbeer-twitter"><i class="fa fa-twitter"></i></a></li>
-
-                          <?php endif; if($google):?>
-
-                              <li><a href="<?php echo esc_url($google);?>" target="_blank" class="tbeer-google-plus"><i class="fa fa-google-plus"></i></a></li>
-
-                          <?php endif; if($youtube):?>
-
-                              <li><a href="<?php echo esc_url($youtube);?>" target="_blank" class="tbeer-youtube"><i class="fa fa-youtube-play"></i></a></li>
-
-                          <?php endif;?>
-
-                        </ul>
-
-                    </div>
-
-                  <?php endif;?>                
-
                   <!-- Social Icons End -->
 
-                    <?php if(isset($pixel_options['search'])&&$pixel_options['search']==1):?>
-                      <div class="tbeer-header-search-wrapper">
-
-                        <div class="tbeer-search-form-wrapper">
-
-                          <form role="search" method="get" role="search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-
-                              <input type="text" id="tbeer-header-search" placeholder="Search The Site..." name="s">                            
-
-                          </form>
-
-                        </div>
-                        <a href="#" class="tbeer-header-search-btn">
-                          <i class="ion-ios-search-strong"></i>
-                        </a>    
-
-                      </div>
-
-                    <?php endif;?>
-                    <!-- Search End-->
+                    
 
               </div>
 
         </div>
 
       </div>
-           
-    </nav>
+
+    </div>
 
   </header>
 
