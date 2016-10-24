@@ -112,7 +112,7 @@ endif;?>
                     </a>
                  </div>
 
-            <div class="col-xs-12 col-md-3 col-lg-3 header-custom">
+          <div class="col-xs-12 col-md-3 col-lg-3 header-custom">
 
               <!-- .header-search-form -->
               <div class="header-search-form text-left pull-right">
@@ -133,48 +133,42 @@ endif;?>
               <!-- /.header-search-form -->
 
               <!-- .header-folow-us -->
+             <?php
+
+              $facebook=$pixel_options['social_facebook'];
+
+              $twitter=$pixel_options['social_twitter'];
+
+              $google=$pixel_options['social_googlep'];
+
+              $youtube=$pixel_options['social_youtube'];
+
+              if($facebook!=""&& $twitter!="" && $google!="" && $youtube!=""):?>
+
               <div class="header-social text-left pull-right">
+
                 <div class="header-social-name">
-                  Follow Us
+                  <?php _e('Follow Us','pixel');?>
                   <ul class="sub-menu">
-                   <?php
 
-                  $facebook=$pixel_options['social_facebook'];
+                      <?php if($facebook):?>
 
-                  $twitter=$pixel_options['social_twitter'];
+                          <li><a href="<?php echo esc_url($facebook);?>" target="_blank"> <?php _e('Facebook','pixel');?></a></li>
 
-                  $google=$pixel_options['social_googlep'];
+                      <?php endif; if($twitter):?>
 
-                  $youtube=$pixel_options['social_youtube'];
+                          <li><a href="<?php echo esc_url($twitter);?>" target="_blank"> <?php _e('Twitter','pixel');?></a></li>
 
-                  if($facebook!=""&& $twitter!="" && $google!="" && $youtube!=""):?>
+                      <?php endif; if($google):?>
 
-                        <ul>
+                          <li><a href="<?php echo esc_url($google);?>" target="_blank"> <?php _e('Google','pixel');?></a></li>
 
-                          <?php if($facebook):?>
+                      <?php endif; if($youtube):?>
 
-                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
+                          <li><a href="<?php echo esc_url($youtube);?>" target="_blank"> <?php _e('Youtube','pixel');?></a></li>
 
-                          <?php endif; if($twitter):?>
+                      <?php endif;?>
 
-                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
-
-                          <?php endif; if($google):?>
-
-                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
-
-                          <?php endif; if($youtube):?>
-
-                              <li><a href="<?php echo esc_url($facebook);?>" target="_blank"></a></li>
-
-                          <?php endif;?>
-
-                        </ul>
-
-                    </div>
-
-                  <?php endif;?>                
-                  
                   </ul>
 
               </div>
@@ -182,43 +176,49 @@ endif;?>
 
             </div>
 
+             <?php endif;?> 
+
+          </div><!-- /.header-custom --> 
+
 
 
               <!-- navbar-collapse start-->
 
-              <div id="nav-menu" class="navbar-collapse tbeer-menu-wrapper collapse" role="navigation">
+              
+            <div class="col-xs-12 col-md-6 col-lg-6 header-bottom-panel">
+              <!-- .header-menu-wrap -->
+              <div class="header-menu-wrap text-center">
 
-                <?php
+                <nav class="header-menu jLoad text-left">
 
-                  wp_nav_menu( array(
+                  <?php
 
-                  'theme_location'    => 'primary',
+                    wp_nav_menu( array(
 
-                  'container'         => '',
+                    'theme_location'    => 'primary',
 
-                  'container_class'   => '',
+                    'container'         => '',
 
-                  'container_id'      => 'bs-example-navbar-collapse-1',
+                    'container_class'   => '',
 
-                  'menu_class'        => 'nav navbar-nav tbeer-menus',
+                    'container_id'      => 'bs-example-navbar-collapse-1',
 
-                  'fallback_cb'       => 'pixel_bootstrap_navwalker::fallback',
+                    'menu_class'        => 'primary-menu',
 
-                  'walker'            => new pixel_bootstrap_navwalker())
+                    'fallback_cb'       => 'pixel_bootstrap_navwalker::fallback',
 
-                  );?>
+                    'walker'            => new pixel_bootstrap_navwalker())
 
-              </div>
+                    );?>
 
-              <!-- navbar-collapse end-->
-              <div class="tbeer-social-and-search-wrapper">
-
-                  <!-- Social Icons End -->
-
-                    
+                </nav>
 
               </div>
 
+            </div> <!--/header-bottom-panel-->
+
+             
+            
         </div>
 
       </div>
@@ -226,5 +226,8 @@ endif;?>
     </div>
 
   </header>
+
+
+  <main>
 
   

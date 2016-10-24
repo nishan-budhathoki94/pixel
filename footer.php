@@ -1,10 +1,11 @@
 <?php // Exit if accessed directly
 
 if (!defined('ABSPATH')) {echo '<h1>Forbidden</h1>'; exit();} $pageid=get_the_ID();global $pixel_options;  ?>
+</main>
 
     <!-- FOOTER -->
 
-        <footer>
+        <footer class="site-footer">
             <!-- Footer Bottom -->
 
             <div class="tbeer-footer-bottom">

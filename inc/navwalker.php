@@ -44,7 +44,7 @@ class pixel_bootstrap_navwalker extends Walker_Nav_Menu {
 
         $indent = str_repeat( "\t", $depth );
 
-        $output .= "\n$indent<ul role=\"menu\" class=\"tbeer-dropdown-menu\">\n";
+        $output .= "\n$indent<ul role=\"menu\" class=\"sub-menu\">\n";
 
     }
 
@@ -128,7 +128,7 @@ class pixel_bootstrap_navwalker extends Walker_Nav_Menu {
 
             if ( $args->has_children )
 
-                $class_names .= ' has-submenu';
+                $class_names .= ' menu-item-children';
 
 
 
