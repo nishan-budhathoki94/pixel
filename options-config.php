@@ -884,6 +884,39 @@ if (!class_exists('Redux_Framework_sample_config')) {
 
             );
 
+             $categories =  get_terms( 'category' );
+             $category = array();
+             $i=0;
+             foreach ($categories as $i => $category) {
+                        # code...
+                   $category = array(
+
+                        'id'        => $category->name.'color'.$i,
+
+                         'type'      => 'color',
+
+                        'title'     => __('Select color for '.$category->name, 'pixel'),
+
+                    );
+                   $i++;
+
+                }
+                var_dump($categories);
+
+
+
+             $this->sections[] = array(
+
+                'icon'      => 'el-icon-bullhorn',
+
+                'title'     => __('Category Color', 'pixel'),
+
+                'desc'      => __('<p class="description">Select the category color.</p>', 'pixel'),
+
+                'fields'    => array( $category ),
+
+            );
+
 
 
             $this->sections[] = array(
