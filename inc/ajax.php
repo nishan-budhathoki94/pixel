@@ -10,7 +10,7 @@ $paged=$_POST['paged'];
 
 if($_POST['action_type'] == 'loadmore' ){    
 
-     $posts_per_page=6; $h='353';$w='353';
+     $posts_per_page=6; $h='380';$w='380';
 
     $args_ajax = array(
 
@@ -94,13 +94,13 @@ if($_POST['action_type'] == 'loadmore_cat' ){
 
         else{
 
-          $url=get_template_directory_uri().'/assets/images/no-image.png';
+          $url=get_template_directory_uri().'/assets/img/no-image.png';
 
           $text='No Image';
 
         }
 
-        $html=' <div class="tbeer-latest-article-post"><div class="tbeer-image-wrapper"><img src="'.esc_url($url).'" alt="'.esc_attr($text).'"></div><div class="tbeer-latest-post-details">'.trim( $output, $separator ).'<h3 class="tbeer-latest-post-heading"><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3><div class="tbeer-latest-post-meta"><span class="tbeer-latest-post-date">'.date("m.d.y").'</span><div class="tbeer-latest-post-author">'.get_the_author_posts_link().'</div></div></div></div>';
+        $html=' <article class="post-item"><div class="post-item-image"><img src="'.esc_url($url).'" alt="'.esc_attr($text).'"></div><div class="post-item-content">'.trim( $output, $separator ).'<h3 class="tbeer-latest-post-heading"><a href="'.get_the_permalink().'">'.get_the_title().'</a></h3><div class="tbeer-latest-post-meta"><span class="tbeer-latest-post-date">'.date("m.d.y").'</span><div class="tbeer-latest-post-author">'.get_the_author_posts_link().'</div></div></div></article>';
 
 
 

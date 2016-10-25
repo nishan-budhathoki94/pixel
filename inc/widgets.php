@@ -54,17 +54,18 @@ class WP_Widget_Popular_Post_pixel extends WP_Widget {
 
           $r = new WP_Query( $arg );
 
-          if ($r->have_posts()) :
+          if ($r->have_posts()) : $post_count = 1;
 
           ?>
 
-            <div class="tbeer-sidebar-widget-details">
 
-            <?php while ( $r->have_posts() ) : $r->the_post(); ?>
+            <?php while ( $r->have_posts() ) : $r->the_post(); 
+                
+                $list=($post_count==1)? ' ' : ' list'; ?>
 
-                <div class="tbeer-trending-news-post">
+                <div class="widget-popular-post-item<?php echo $list;?>">
 
-                    <div class="tbeer-trending-news-img">
+                    <div class="widget-popular-post-image">
 
                         <?php
 
@@ -76,9 +77,13 @@ class WP_Widget_Popular_Post_pixel extends WP_Widget {
 
                         $alt = get_post_meta($thumbnail, '_wp_attachment_image_alt', true);
 
+                        $h=($post_count==1)? 160 : 100;
+
+                        $w=($post_count==1)? 360 : 100;
+
                         if($img_url):
 
-                        $n_img = aq_resize( $img_url[0], $width =100, $height = 100, $crop = true, $single = true, $upscale = true );
+                        $n_img = aq_resize( $img_url[0], $width =$w, $height = $h, $crop = true, $single = true, $upscale = true );
 
                         ?>
 
@@ -86,9 +91,9 @@ class WP_Widget_Popular_Post_pixel extends WP_Widget {
 
                         <?php else:
 
-                        $img_url=get_template_directory_uri().'/assets/images/no-image.png';
+                        $img_url=get_template_directory_uri().'/assets/img/no-image.png';
 
-                        $n_img = aq_resize( $img_url, $width =100, $height = 100, $crop = true, $single = true, $upscale = true );?>
+                        $n_img = aq_resize( $img_url, $width =$w, $height = $h, $crop = true, $single = true, $upscale = true );?>
 
                         <img src="<?php echo esc_url($img_url);?>" alt="No image">
 
@@ -96,17 +101,16 @@ class WP_Widget_Popular_Post_pixel extends WP_Widget {
 
                     </div>
 
-                    <div class="tbeer-trending-news-details">
+                    <div class="widget-popular-post-content">
 
-                        <h3 class="tbeer-news-post-heading"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+                        <h6 class="widget-popular-post-title"><a href="<?php the_permalink();?>"><?php the_title();?></a></h6>
 
                     </div>
 
                </div>
 
-              <?php endwhile; ?>
-
-            </div>
+              <?php $post_count++;
+               endwhile; ?>
 
           <?php endif;?>
 

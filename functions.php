@@ -54,36 +54,37 @@ function pixel_widgets_setup() {
             'description' => __('Widgets placed here will display in the post detail page', 'pixel'),
             'before_widget' => '<div id="%1$s" class="widget %2$s pixel-sidebar-widget">',
             'after_widget'  => '</div>',
-            'before_title'  => '<h3 class="tbeer-sidebar-widget-title">',
-            'after_title'   => '</h3>'
+            'before_title'  => '<div class="widgets-title">',
+            'after_title'   => '</div>'
         ));
         
-        // register_sidebar(array(
-        //     'name' => __("Category Widget Here", 'pixel'),
-        //     'id' => "pixel-category-sidebar",
-        //     'description' => __('Widgets placed here will display in the left sidebar', 'pixel'),
-        //     'before_widget' => '<div id="%1$s" class="widget %2$s tbeer-category-widget">',
-        //     'after_widget'  => '</div>',
-        //     'before_title'  => '<h3 class="tbeer-cat-title">',
-        //     'after_title'   => '</h3>'
-        // )); 
+        register_sidebar(array(
+            'name' => __("Category Widget Here", 'pixel'),
+            'id' => "pixel-category-sidebar",
+            'description' => __('Widgets placed here will display in the left sidebar', 'pixel'),
+            'before_widget' => '<div id="%1$s" class="widget %2$s tbeer-category-widget">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<div class="left-nav-title">',
+            'after_title'   => '</div>'
+        )); 
         register_sidebar(array(
             'name' => __("Ad Widget Here", 'pixel'),
             'id' => "pixel-widgets-sidebar",
             'description' => __('Widgets placed here will display in the right sidebar', 'pixel'),
-            'before_widget' => '<div id="%1$s" class="widget %2$s tbeer-addvertisment-space tbeer-sidebar-widget">',
+            'before_widget' => '<div id="%1$s" class="widget %2$s baner-area">',
             'after_widget'  => '</div>',
-            'before_title'  => '<h3 class="tbeer-sidebar-widget-title">',
-            'after_title'   => '</h3>'
+            'before_title'  => '<div class="widgets-title">',
+            'after_title'   => '</div>'
         ));
+        $img_uri=get_template_directory_uri().'/assets/img/arr.png';
         register_sidebar(array(
             'name' => __("Trending Widget Here", 'pixel'),
             'id' => "pixel-trending-sidebar",
             'description' => __('Sidebar for trending posts', 'pixel'),
-            'before_widget' => '<div id="%1$s" class="widget %2$s tbeer-sidebar-widget tbeer-trending-news-widget">',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h3 class="tbeer-sidebar-widget-title">',
-            'after_title'   => '</h3>'
+            'before_widget' => '<div class="widgets-wrap mt15"><div id="%1$s" class="widgets %2$s widget-popular-posts">',
+            'after_widget'  => '</div></div>',
+            'before_title'  => '<div class="widgets-title"><img src="'.$img_uri.'" alt="">',
+            'after_title'   => '</div>'
         ));
          register_sidebar(array(
             'name' => __("Top Banner Widget Here", 'pixel'),
