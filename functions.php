@@ -390,7 +390,7 @@ if ( ! class_exists( 'Pixel_Recent_Posts_Widget' ) ) :
             if ( absint( $post_category ) > 0  ) {
                 $header_args=array(
                 'post_type'=>'post',
-                'posts_per_page'=>5,
+                'posts_per_page'=>2,
                 'orderby' => 'date',
                 'order'   => 'DESC',
                 'cat' => $post_category,
@@ -399,7 +399,7 @@ if ( ! class_exists( 'Pixel_Recent_Posts_Widget' ) ) :
             else{
             $header_args=array(
                 'post_type'=>'post',
-                'posts_per_page'=>5,
+                'posts_per_page'=>2,
                 'orderby' => 'date',
                 'order'   => 'DESC',
                 'meta_query' => array(
@@ -415,53 +415,49 @@ if ( ! class_exists( 'Pixel_Recent_Posts_Widget' ) ) :
                 $header_query= new WP_Query($header_args);
                 if($header_query->have_posts()):$i=1;
                     echo ' <!-- FEATURED NEWS SECTION -->
-                            <section class="tbeer-featured-news-section">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="tbeer-featured-news-wrapper">
-                                ';
+                            <div class="container-fluid">
+
+                                <!-- .top-site-block -->
+                                <div class="top-site-block">';
                         while($header_query->have_posts()):
                             $header_query->the_post(); ?>
                         <?php
                             $thumbnail = get_post_thumbnail_id();
                             $img_url = wp_get_attachment_image_src( $thumbnail,'full');
                             $alt = get_post_meta($thumbnail, '_wp_attachment_image_alt', true);
-                            $w=($i==1)?"1170":"250";
-                            $h=($i==1)?"427":"250";
-                            $featured_class=($i==3) ? "tbeer-featured-news tbeer-main-news" : "tbeer-featured-news tbeer-half-height";
+                            $w=($i==1)?"722":"555";
                             if($img_url)
-                                $url = aq_resize( $img_url[0], $width =389, $height = 534, $crop = true, $single = true, $upscale = true );
+                                $url = aq_resize( $img_url[0], $width =$w, $height = 720, $crop = true, $single = true, $upscale = true );
                             else{
                                 $url=get_template_directory_uri().'/assets/images/no-image.png';
                                 $alt="No Image";
                             }
-                                if ($i==1 || $i==3 || $i==4 ) : echo '<div class="tbeer-featured-news-column">'; endif; 
-                                echo '<div class="'.$featured_class.'">';?>
-                                    <div class="tbeer-featured-img">
-                                        <img src="<?php echo esc_url($url);?>" alt="<?php echo esc_attr($alt);?>">
+                                
+                                echo '<div class="block-w'.$i.'">';?>
+                                    <div class="background">
+                                    <div class="layer" style="background-image: url(<?php echo $url;?>)"></div>
                                     </div>
-                                    <div class="tbeer-news-details">
-                                        <div class="tbeer-category-meta"> <?php if (get_the_category()) : ?><?php the_category(' / ');endif; ?></div>
-                                        <h3 class="tbeer-news-post-heading">
+
+                                    <div class="block-w-content">
+                                        <div class="sticky-post-tag accentb"> <?php if (get_the_category()) : ?><?php the_category(' / ');endif; ?></div>
+                                        <h1 class="block-w-title">
                                             <a href="<?php the_permalink();?>"><?php the_title();?></a>
-                                        </h3>
-                                        <div class="tbeer-news-post-meta">
-                                            <?php if($i==3):?>
-                                            <span class="tbeer-featured-post-date"><?php echo date("m.d.y");  ?>
-                                            </span>
-                                            <?php endif;?>
-                                        <?php if($i!=3): _e('by','pixel'); endif;?>&nbsp;
-                                        <?php the_author_posts_link(); ?>
+                                        </h1>
+                                        <div class="block-w-meta">
+                                         <a href="<?php the_author_link();?>"><img src="<?php echo get_template_directory_uri() ;?>/assets/img/avatar.svg" alt="">
+                                            <?php the_author();?></a>
+                                            <a href="#"><img src="<?php echo get_template_directory_uri() ;?>/assets/img/clock.svg" alt="">
+                                            <?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></a>
+                                            <a><img src="<?php echo get_template_directory_uri() ;?>/assets/img/chat.svg" alt="">
+                                            <?php comments_number( 'No Comments', '1 Comment', '% Comments' ); ?></a>
+                                            
                                         </div>
                                     </div>
                                 <?php echo '</div>';
-                                if( $i==2 || $i==3 || $i==5 ): echo '</div>'; endif;
                          $i++;
                         endwhile;
                         echo '</div>
-                            </div>
-                        </div>
-                    </section>';
+                            </div>';
                 endif;
                 wp_reset_postdata();
                ?>

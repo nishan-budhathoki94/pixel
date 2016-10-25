@@ -74,17 +74,7 @@
 
 </head>
 
-<?php if(is_singular()):
-
-    $class="tbeer-single-post-template";
-
-  else:
-
-    $class="tbeer-home-template";
-
-endif;?>
-
-<body <?php body_class($class);?>>
+<body <?php body_class();?>>
 
 <div id="wrapper">
 
@@ -224,5 +214,7 @@ endif;?>
   </header>
 
   <main>
+
+    <div class="main-content">
 
   

@@ -4,6 +4,8 @@ if (!defined('ABSPATH')) {echo '<h1>Forbidden</h1>'; exit();} $pageid=get_the_ID
 
 </main>
 
+  </div>
+
     <!-- FOOTER -->
 
         <footer class="site-footer">
